@@ -21,16 +21,21 @@ const main = async () => {
           400,
           {
             text:
-              "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+              "dddLorem Ipsum is simply dummy text of the printing and typesetting industry.",
             alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
           },
           W,
           H
         );
 
-        image.getBuffer(Jimp.MIME_JPEG, (err, buffer) => {
+        image.getBuffer(Jimp.MIME_JPEG, (error, result) => {
           image.write(DIR + FILENAME);
-          console.log("image uploaded: " + DIR + FILENAME);
+
+          if (!error) {
+            console.log("Resim yüklendi.");
+          } else {
+            console.warn("hata");
+          }
         });
 
         /*image.getBase64(Jimp.AUTO, function(err, data) {  // Add err
@@ -45,7 +50,7 @@ const main = async () => {
 
 main()
   .then((image) => {
-    (image) => image.write(FILENAME);
+    //image.write(FILENAME);
   })
   .catch((err) => {
     // Handle an exception.
